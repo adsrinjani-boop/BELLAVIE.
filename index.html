@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -62,7 +63,21 @@ svg{display:block}
 .hero-text h1{font-size:clamp(38px,6vw,68px);line-height:1;color:#fff;font-weight:300;letter-spacing:2px}
 .hero-text h1 strong{font-weight:800}
 .hero-text p{color:#fff;margin:14px 0 24px;letter-spacing:2px;font-size:14px}
-.hero-img img{max-height:420px;object-fit:contain;margin-left:auto}
+.hero-img{display:flex;align-items:center;justify-content:flex-end;padding:20px 0}
+.hero-img img,
+.hero-img object{
+  width:100%;
+  max-width:560px;
+  max-height:420px;
+  height:auto;
+  object-fit:contain;
+  margin-left:auto;
+  animation:heroFloat 5s ease-in-out infinite;
+}
+@keyframes heroFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+}
 
 /* buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:4px;font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:inherit}
@@ -202,7 +217,10 @@ svg{display:block}
   .cat.big{grid-row:auto;grid-column:span 2}
   .footer-grid{grid-template-columns:1fr 1fr}
   .feat-grid,.trust-grid{grid-template-columns:1fr 1fr}
-  .promo-inner,.hero-inner{grid-template-columns:1fr}
+    .promo-inner,.hero-inner{grid-template-columns:1fr}
+  .hero-img{justify-content:center;padding:0 0 30px}
+  .hero-img img,.hero-img object{max-width:340px;margin:0 auto}
+  .hero-text{padding:40px 0 10px}
   .hero-img{display:none}
   .nav{position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;padding:16px 20px;display:none;box-shadow:0 10px 20px rgba(0,0,0,.08)}
   .nav.open{display:flex}
@@ -297,8 +315,8 @@ svg{display:block}
       <p>DISKON HINGGA 50%</p>
       <a href="#produk" class="btn btn-dark">BELANJA SEKARANG <svg class="ico" style="width:15px;height:15px"><use href="#i-arrow"/></svg></a>
     </div>
-    <div class="hero-img">
-      <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=80" alt="Model fashion BELLAVIE" />
+        <div class="hero-img">
+      <img src="animasi.svg" alt="Animasi fashion BELLAVIE" loading="lazy" />
     </div>
   </div>
 </section>
