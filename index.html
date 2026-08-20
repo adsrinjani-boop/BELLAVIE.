@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -5,25 +6,264 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>BELLAVIE — Toko Fashion Online</title>
 <meta name="description" content="BELLAVIE - toko fashion online. Koleksi terbaru pakaian wanita, pria, dan anak dengan harga terbaik." />
-<link rel="stylesheet" href="style.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+:root{
+  --orange:#f47b20;
+  --orange-dark:#e06a10;
+  --dark:#1b1b1b;
+  --gray:#f5f5f3;
+  --muted:#8a8a8a;
+  --radius:6px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',system-ui,sans-serif;color:var(--dark);background:#fff;line-height:1.6}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+svg{display:block}
+.ico{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ico-lg{width:26px;height:26px}
+.container{width:min(1180px,92%);margin:0 auto}
+.section{padding:60px 0}
+.section-title{text-align:center;font-size:28px;font-weight:700;letter-spacing:1px}
+.section-title .star{display:block;margin:4px auto 0;width:14px;height:14px;color:var(--orange);fill:currentColor;stroke:none}
+
+/* topbar */
+.topbar{background:var(--orange);color:#fff;font-size:12px}
+.topbar-inner{display:flex;gap:18px;padding:8px 0;flex-wrap:wrap;justify-content:center}
+.topbar-inner span{white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.topbar-inner .ico{width:15px;height:15px}
+
+/* header */
+.header{position:sticky;top:0;z-index:50;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 0}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-icon{color:var(--orange)}
+.logo-text{font-weight:800;font-size:22px;color:var(--orange);line-height:1;letter-spacing:1px}
+.logo-text small{display:block;font-size:10px;color:var(--dark);font-weight:400;font-style:italic;letter-spacing:.5px}
+.nav{display:flex;gap:26px;font-size:13px;font-weight:600}
+.nav a{padding:4px 0;border-bottom:2px solid transparent}
+.nav a:hover,.nav a.active{color:var(--orange);border-color:var(--orange)}
+.header-icons{display:flex;gap:14px;align-items:center}
+.icon-btn{position:relative;background:none;border:none;cursor:pointer;color:var(--dark);padding:2px;line-height:0}
+.icon-btn:hover{color:var(--orange)}
+.badge{position:absolute;top:-8px;right:-10px;background:var(--orange);color:#fff;font-size:10px;border-radius:50%;min-width:16px;height:16px;display:grid;place-items:center;font-family:inherit;line-height:1}
+.burger{display:none}
+.searchbar{display:none;padding:12px 0;border-top:1px solid #eee}
+.searchbar.open{display:block}
+.searchbar input{width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:var(--radius);font-family:inherit}
+
+/* hero */
+.hero{background:linear-gradient(90deg,var(--orange) 0%,#fba45c 100%);overflow:hidden}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:20px;min-height:400px}
+.hero-text{padding:60px 0}
+.hero-text h1{font-size:clamp(38px,6vw,68px);line-height:1;color:#fff;font-weight:300;letter-spacing:2px}
+.hero-text h1 strong{font-weight:800}
+.hero-text p{color:#fff;margin:14px 0 24px;letter-spacing:2px;font-size:14px}
+.hero-img img{max-height:420px;object-fit:contain;margin-left:auto}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:4px;font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:inherit}
+.btn-dark{background:var(--dark);color:#fff}
+.btn-dark:hover{background:#000}
+.btn-orange{background:var(--orange);color:#fff}
+.btn-orange:hover{background:var(--orange-dark)}
+.btn-wa{background:#25d366;color:#fff}
+.btn-wa:hover{background:#1eb457}
+.full{width:100%}
+
+/* kategori */
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:16px;padding-top:40px}
+.cat{background:var(--gray);border-radius:var(--radius);padding:22px;display:flex;justify-content:space-between;align-items:flex-end;overflow:hidden;min-height:170px}
+.cat.big{grid-row:span 2;flex-direction:column;justify-content:center;text-align:center;align-items:center}
+.cat-info small{color:var(--orange);font-weight:600;font-size:12px;letter-spacing:1px}
+.cat-info h3{font-size:20px;font-weight:800;line-height:1.1}
+.cat-info p{font-size:13px;color:#555;margin-bottom:12px}
+.cat img{width:120px;height:140px;object-fit:cover;border-radius:4px}
+.cat.big img{width:220px;height:180px;object-fit:contain;margin-bottom:14px}
+
+/* produk */
+.tabs{display:flex;justify-content:center;gap:26px;margin:22px 0 28px;flex-wrap:wrap}
+.tab{background:none;border:none;font-family:inherit;font-size:13px;font-weight:600;color:#666;cursor:pointer;padding-bottom:4px;border-bottom:2px solid transparent}
+.tab.active{color:var(--orange);border-color:var(--orange)}
+.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{border:1px solid #eee;border-radius:var(--radius);overflow:hidden;position:relative;transition:.25s;background:#fff;display:flex;flex-direction:column}
+.card:hover{box-shadow:0 10px 24px rgba(0,0,0,.1);transform:translateY(-4px)}
+
+/* slider produk */
+.card-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--gray)}
+.slider{display:flex;height:100%;width:100%;transition:transform .35s ease}
+.slider img{min-width:100%;width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none}
+.slide-btn{position:absolute;top:50%;transform:translateY(-50%);width:30px;height:30px;border-radius:50%;border:none;background:rgba(255,255,255,.9);color:var(--dark);display:grid;place-items:center;cursor:pointer;opacity:0;transition:.2s;box-shadow:0 2px 8px rgba(0,0,0,.15);z-index:2}
+.slide-btn.prev{left:8px}
+.slide-btn.next{right:8px}
+.card:hover .slide-btn,.card-img:focus-within .slide-btn{opacity:1}
+.dots{position:absolute;bottom:8px;left:0;right:0;display:flex;justify-content:center;gap:6px;z-index:2}
+.dot{width:7px;height:7px;border-radius:50%;border:none;padding:0;background:rgba(255,255,255,.65);cursor:pointer;box-shadow:0 0 3px rgba(0,0,0,.3)}
+.dot.on{background:var(--orange);width:16px;border-radius:4px}
+.counter{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,.55);color:#fff;font-size:10px;padding:2px 7px;border-radius:10px;z-index:2}
+.tag{position:absolute;top:10px;left:10px;background:#0f9d76;color:#fff;font-size:10px;padding:3px 8px;border-radius:3px;font-weight:600;z-index:2}
+.tag.sale{background:var(--orange)}
+.wish{position:absolute;top:8px;right:8px;background:#fff;border:none;width:30px;height:30px;border-radius:50%;cursor:pointer;display:grid;place-items:center;color:var(--dark);z-index:3}
+.wish .ico{width:15px;height:15px}
+.wish.on{background:var(--orange);color:#fff}
+.wish.on .ico{fill:currentColor}
+
+.card-body{padding:12px;text-align:center;display:flex;flex-direction:column;flex:1}
+.card-body h4{font-size:13px;font-weight:500}
+.price{color:var(--orange);font-weight:700;font-size:14px;margin-top:4px}
+.price del{color:var(--muted);font-weight:400;font-size:12px;margin-left:6px}
+.sizes{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:10px 0 4px}
+.size{min-width:34px;padding:4px 8px;font-family:inherit;font-size:11px;font-weight:600;border:1px solid #ddd;background:#fff;border-radius:4px;cursor:pointer;transition:.15s}
+.size:hover{border-color:var(--orange)}
+.size.on{background:var(--dark);color:#fff;border-color:var(--dark)}
+.size-note{font-size:10px;color:var(--muted);min-height:14px}
+.size-note.warn{color:#d93025}
+.card-actions{display:flex;gap:6px;margin-top:auto;padding-top:10px}
+.card-actions .btn{flex:1;padding:9px 6px;font-size:11px}
+
+/* features */
+.features{background:var(--gray);padding:26px 0}
+.feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.feat{display:flex;gap:12px;align-items:center;justify-content:center}
+.feat .ico{width:26px;height:26px;color:var(--orange);flex:none}
+.feat h4{font-size:13px;font-weight:700}
+.feat p{font-size:12px;color:var(--muted)}
+
+/* promo */
+.promo{background:#f1ece6}
+.promo-inner{display:grid;grid-template-columns:1fr 1.2fr;align-items:center;gap:40px}
+.promo-img img{max-height:340px;object-fit:cover;width:100%}
+.promo-label{color:var(--orange);font-size:12px;font-weight:600;letter-spacing:1px}
+.promo-text h2{font-size:32px;font-weight:800;margin:8px 0}
+.promo-text h2 em{color:var(--orange);font-style:normal}
+.promo-text p{color:#555;font-size:14px;margin-bottom:18px}
+
+/* trust */
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.trust-grid .ico{width:28px;height:28px;margin:0 auto;color:var(--orange)}
+.trust-grid h4{font-size:13px;font-weight:700;margin-top:6px}
+.trust-grid p{font-size:12px;color:var(--muted)}
+
+/* footer */
+.footer{background:var(--dark);color:#ddd;padding-top:50px;font-size:13px}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1.4fr;gap:26px;padding-bottom:34px}
+.footer h4{color:#fff;font-size:13px;margin-bottom:12px;letter-spacing:1px}
+.footer a{display:block;color:#bbb;padding:3px 0}
+.footer a:hover{color:var(--orange)}
+.footer .muted{color:#999;margin:10px 0}
+.footer-logo .logo-text small{color:#bbb}
+.socials{display:flex;gap:8px;margin-top:10px}
+.socials a{width:30px;height:30px;border-radius:50%;background:#2b2b2b;display:grid;place-items:center;color:#ddd}
+.socials a:hover{background:var(--orange);color:#fff}
+.socials .ico{width:15px;height:15px}
+.news{display:flex;margin-top:10px}
+.news input{flex:1;padding:10px;border:none;border-radius:4px 0 0 4px;font-family:inherit;min-width:0}
+.news button{background:var(--orange);color:#fff;border:none;padding:0 14px;border-radius:0 4px 4px 0;cursor:pointer;font-family:inherit;font-size:11px;font-weight:700}
+.pay{color:#777;font-size:11px;margin-top:12px}
+.copyright{border-top:1px solid #333;text-align:center;padding:16px;color:#999;font-size:12px}
+
+/* cart */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:.3s;z-index:60}
+.overlay.on{opacity:1;pointer-events:auto}
+.cart{position:fixed;top:0;right:-460px;width:min(400px,92%);height:100%;background:#fff;z-index:70;display:flex;flex-direction:column;transition:.3s}
+.cart.on{right:0}
+.cart-head{display:flex;justify-content:space-between;align-items:center;padding:18px;border-bottom:1px solid #eee}
+.cart-head h3{font-size:16px}
+.cart-head button{background:none;border:none;cursor:pointer;color:var(--dark);line-height:0}
+.cart-body{flex:1;overflow-y:auto;padding:14px}
+.cart-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #f0f0f0}
+.cart-item img{width:64px;height:78px;object-fit:cover;border-radius:4px;flex:none}
+.cart-item .info{flex:1;min-width:0}
+.cart-item h5{font-size:13px;font-weight:500}
+.cart-item .p{color:var(--orange);font-size:13px;font-weight:600}
+.cart-item .sub{font-size:11px;color:var(--muted)}
+.row{display:flex;align-items:center;gap:8px;margin-top:6px;flex-wrap:wrap}
+.mini-size{font-family:inherit;font-size:11px;padding:3px 6px;border:1px solid #ddd;border-radius:4px;background:#fff}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:24px;height:24px;border:1px solid #ddd;background:#fff;cursor:pointer;border-radius:3px;display:grid;place-items:center;color:var(--dark)}
+.qty .ico{width:12px;height:12px}
+.rm{margin-left:auto;background:none;border:none;cursor:pointer;color:var(--muted);line-height:0}
+.rm:hover{color:#d93025}
+.cart-foot{padding:18px;border-top:1px solid #eee}
+.total{display:flex;justify-content:space-between;margin-bottom:12px;font-size:15px}
+.empty{text-align:center;color:var(--muted);padding:40px 0;font-size:14px}
+.empty .ico{width:34px;height:34px;margin:0 auto 10px;color:#ccc}
+
+/* toast */
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);background:var(--dark);color:#fff;padding:12px 20px;border-radius:6px;font-size:13px;opacity:0;pointer-events:none;transition:.3s;z-index:90;max-width:90%;text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+@media(max-width:980px){
+  .product-grid{grid-template-columns:repeat(2,1fr)}
+  .cat-grid{grid-template-columns:1fr 1fr}
+  .cat.big{grid-row:auto;grid-column:span 2}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .feat-grid,.trust-grid{grid-template-columns:1fr 1fr}
+  .promo-inner,.hero-inner{grid-template-columns:1fr}
+  .hero-img{display:none}
+  .nav{position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;padding:16px 20px;display:none;box-shadow:0 10px 20px rgba(0,0,0,.08)}
+  .nav.open{display:flex}
+  .burger{display:block}
+  .topbar-inner span:nth-child(n+2){display:none}
+  .slide-btn{opacity:1;background:rgba(255,255,255,.8)}
+}
+@media(max-width:560px){
+  .footer-grid,.cat-grid{grid-template-columns:1fr}
+  .cat.big{grid-column:auto}
+  .product-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .card-actions{flex-direction:column}
+  .card-body{padding:10px}
+}
+</style>
 </head>
 <body>
+
+<!-- ================= SVG ICON SPRITE ================= -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
+  <symbol id="i-return" viewBox="0 0 24 24"><path d="M3 10h11a5 5 0 0 1 0 10H8"/><path d="M7 6 3 10l4 4"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.6 13.4 12 22l-9-9V4h9l8.6 8.6a1.4 1.4 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.2"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 7h12l1 13H5z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.3A4 4 0 0 1 12 8a4 4 0 0 1 7 2.7C19 15.6 12 20 12 20z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="m14 6-6 6 6 6"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="m10 6 6 6-6 6"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.7-7 9-4-1.3-7-4.5-7-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><path d="M4 13h3v6H5a1 1 0 0 1-1-1z"/><path d="M20 13h-3v6h2a1 1 0 0 0 1-1z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.6 5.6 6 .8-4.4 4.2 1.1 6L12 16.8 6.7 19.6l1.1-6L3.4 9.4l6-.8z"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24"><path d="m4 16 5-5 3 3 7-7"/><path d="M15 7h5v5"/></symbol>
+  <symbol id="i-smile" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 14a4 4 0 0 0 6 0"/><path d="M9.5 9.5h.01M14.5 9.5h.01"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 7V5h4v2M6 7l1 13h10l1-13"/></symbol>
+  <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 1-11.9 7L4 20l1.1-3.9A8 8 0 1 1 20 12z"/><path d="M9.2 9.3c.3-.7.6-.7.9-.7h.6c.2 0 .4 0 .6.5l.7 1.6c.1.3 0 .5-.1.7l-.4.5c-.1.2-.2.3 0 .6a6 6 0 0 0 2.7 2.2c.3.1.4 0 .6-.1l.5-.6c.2-.2.4-.2.6-.1l1.6.8c.3.1.4.3.4.5a1.9 1.9 0 0 1-1.4 1.5c-.5.1-1.3.2-3.4-.7a8.4 8.4 0 0 1-3.6-3.6c-.9-1.7-.6-2.6-.3-3.1z"/></symbol>
+  <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8h2V5h-2a3 3 0 0 0-3 3v2H9v3h2v6h3v-6h2l1-3h-3V9a1 1 0 0 1 1-1z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.5"/><path d="M16.8 7.2h.01"/></symbol>
+  <symbol id="i-tw" viewBox="0 0 24 24"><path d="M20 6.5a7 7 0 0 1-2 .6 3.4 3.4 0 0 0 1.5-1.9 7 7 0 0 1-2.2.9 3.4 3.4 0 0 0-5.9 3.1A9.7 9.7 0 0 1 4.4 5.5a3.4 3.4 0 0 0 1 4.6 3.4 3.4 0 0 1-1.5-.4 3.4 3.4 0 0 0 2.7 3.4 3.5 3.5 0 0 1-1.5.1 3.4 3.4 0 0 0 3.2 2.4A6.9 6.9 0 0 1 4 17.1a9.7 9.7 0 0 0 5.2 1.5c6.3 0 9.8-5.3 9.8-9.8v-.5A6.8 6.8 0 0 0 20 6.5z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 17c.8-2.6 1.2-4 1.2-4s-.3-.6-.3-1.5c0-1.4.8-2.4 1.8-2.4.9 0 1.3.6 1.3 1.4 0 .9-.6 2.2-.9 3.4-.2 1 .5 1.8 1.5 1.8 1.8 0 3-2.3 3-5 0-2-1.4-3.6-3.9-3.6-2.8 0-4.6 2.1-4.6 4.4 0 .8.2 1.4.6 1.8.2.2.2.3.1.5l-.2.7"/></symbol>
+</svg>
 
 <!-- TOP BAR -->
 <div class="topbar">
   <div class="container topbar-inner">
-    <span>🚚 GRATIS ONGKIR untuk pesanan di atas Rp 500.000</span>
-    <span>↩️ RETUR MUDAH dalam 30 hari</span>
-    <span>🏷️ DISKON 20% untuk pesanan pertama</span>
+    <span><svg class="ico"><use href="#i-truck"/></svg> GRATIS ONGKIR untuk pesanan di atas Rp 500.000</span>
+    <span><svg class="ico"><use href="#i-return"/></svg> RETUR MUDAH dalam 30 hari</span>
+    <span><svg class="ico"><use href="#i-tag"/></svg> DISKON 20% untuk pesanan pertama</span>
   </div>
 </div>
 
 <!-- HEADER -->
 <header class="header">
   <div class="container header-inner">
-    <a href="#" class="logo">
-      <span class="logo-icon">🛒</span>
+    <a href="#home" class="logo">
+      <svg class="ico ico-lg logo-icon"><use href="#i-bag"/></svg>
       <span class="logo-text">BELLAVIE<small>Style Your Story</small></span>
     </a>
     <nav class="nav" id="nav">
@@ -35,11 +275,11 @@
       <a href="#kontak">KONTAK</a>
     </nav>
     <div class="header-icons">
-      <button class="icon-btn" id="searchBtn" title="Cari">🔍</button>
-      <button class="icon-btn" title="Akun">👤</button>
-      <button class="icon-btn" title="Wishlist">❤️<span class="badge" id="wishCount">0</span></button>
-      <button class="icon-btn" id="cartBtn" title="Keranjang">🛍️<span class="badge" id="cartCount">0</span></button>
-      <button class="icon-btn burger" id="burger">☰</button>
+      <button class="icon-btn" id="searchBtn" title="Cari" aria-label="Cari"><svg class="ico"><use href="#i-search"/></svg></button>
+      <button class="icon-btn" title="Akun" aria-label="Akun"><svg class="ico"><use href="#i-user"/></svg></button>
+      <button class="icon-btn" title="Wishlist" aria-label="Wishlist"><svg class="ico"><use href="#i-heart"/></svg><span class="badge" id="wishCount">0</span></button>
+      <button class="icon-btn" id="cartBtn" title="Keranjang" aria-label="Keranjang"><svg class="ico"><use href="#i-bag"/></svg><span class="badge" id="cartCount">0</span></button>
+      <button class="icon-btn burger" id="burger" aria-label="Menu"><svg class="ico"><use href="#i-menu"/></svg></button>
     </div>
   </div>
   <div class="searchbar" id="searchbar">
@@ -55,7 +295,7 @@
     <div class="hero-text">
       <h1>LIVE FOR<br /><strong>FASHION</strong></h1>
       <p>DISKON HINGGA 50%</p>
-      <a href="#produk" class="btn btn-dark">BELANJA SEKARANG →</a>
+      <a href="#produk" class="btn btn-dark">BELANJA SEKARANG <svg class="ico" style="width:15px;height:15px"><use href="#i-arrow"/></svg></a>
     </div>
     <div class="hero-img">
       <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=80" alt="Model fashion BELLAVIE" />
@@ -71,7 +311,7 @@
 <!-- PRODUK -->
 <section class="section" id="produk">
   <div class="container">
-    <h2 class="section-title">PRODUK POPULER</h2>
+    <h2 class="section-title">PRODUK POPULER<svg class="star" viewBox="0 0 24 24"><use href="#i-star"/></svg></h2>
     <div class="tabs" id="tabs">
       <button class="tab active" data-tab="Semua">SEMUA</button>
       <button class="tab" data-tab="Baru">NEW ARRIVALS</button>
@@ -85,10 +325,10 @@
 <!-- FITUR -->
 <section class="features">
   <div class="container feat-grid">
-    <div class="feat"><span>🚚</span><div><h4>GRATIS ONGKIR</h4><p>Pesanan di atas Rp 500rb</p></div></div>
-    <div class="feat"><span>↩️</span><div><h4>RETUR MUDAH</h4><p>Dalam 30 hari</p></div></div>
-    <div class="feat"><span>🛡️</span><div><h4>PEMBAYARAN AMAN</h4><p>100% terlindungi</p></div></div>
-    <div class="feat"><span>🎧</span><div><h4>SUPPORT 24/7</h4><p>Kami siap membantu</p></div></div>
+    <div class="feat"><svg class="ico"><use href="#i-truck"/></svg><div><h4>GRATIS ONGKIR</h4><p>Pesanan di atas Rp 500rb</p></div></div>
+    <div class="feat"><svg class="ico"><use href="#i-return"/></svg><div><h4>RETUR MUDAH</h4><p>Dalam 30 hari</p></div></div>
+    <div class="feat"><svg class="ico"><use href="#i-shield"/></svg><div><h4>PEMBAYARAN AMAN</h4><p>100% terlindungi</p></div></div>
+    <div class="feat"><svg class="ico"><use href="#i-headset"/></svg><div><h4>SUPPORT 24/7</h4><p>Kami siap membantu</p></div></div>
   </div>
 </section>
 
@@ -102,7 +342,7 @@
       <span class="promo-label">— PENAWARAN TERBATAS —</span>
       <h2><em>DISKON 20%</em><br />UNTUK SEMUA KOLEKSI T-SHIRT</h2>
       <p>Upgrade lemari pakaianmu dengan kaos premium kami. Nyaman. Bergaya. Berkualitas.</p>
-      <a href="#produk" class="btn btn-dark">BELANJA T-SHIRT →</a>
+      <a href="#produk" class="btn btn-dark">BELANJA T-SHIRT <svg class="ico" style="width:15px;height:15px"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
@@ -110,10 +350,10 @@
 <!-- TENTANG -->
 <section class="section trust" id="tentang">
   <div class="container trust-grid">
-    <div><span>⭐</span><h4>KUALITAS PREMIUM</h4><p>Bahan pilihan terbaik</p></div>
-    <div><span>📈</span><h4>TREN TERKINI</h4><p>Selalu update gaya terbaru</p></div>
-    <div><span>🏷️</span><h4>HARGA TERJANGKAU</h4><p>Nilai terbaik untuk uangmu</p></div>
-    <div><span>😊</span><h4>PELANGGAN PUAS</h4><p>100rb+ pelanggan senang</p></div>
+    <div><svg class="ico"><use href="#i-star"/></svg><h4>KUALITAS PREMIUM</h4><p>Bahan pilihan terbaik</p></div>
+    <div><svg class="ico"><use href="#i-trend"/></svg><h4>TREN TERKINI</h4><p>Selalu update gaya terbaru</p></div>
+    <div><svg class="ico"><use href="#i-tag"/></svg><h4>HARGA TERJANGKAU</h4><p>Nilai terbaik untuk uangmu</p></div>
+    <div><svg class="ico"><use href="#i-smile"/></svg><h4>PELANGGAN PUAS</h4><p>100rb+ pelanggan senang</p></div>
   </div>
 </section>
 
@@ -121,12 +361,17 @@
 <footer class="footer" id="kontak">
   <div class="container footer-grid">
     <div>
-      <div class="logo footer-logo"><span class="logo-icon">🛒</span><span class="logo-text">BELLAVIE<small>Style Your Story</small></span></div>
+      <div class="logo footer-logo"><svg class="ico ico-lg logo-icon"><use href="#i-bag"/></svg><span class="logo-text">BELLAVIE<small>Style Your Story</small></span></div>
       <p class="muted">Toko fashion online untuk gaya terbaru kamu.</p>
-      <div class="socials"><a href="#">f</a><a href="#">ig</a><a href="#">t</a><a href="#">p</a></div>
+      <div class="socials">
+        <a href="#" aria-label="Facebook"><svg class="ico"><use href="#i-fb"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg class="ico"><use href="#i-ig"/></svg></a>
+        <a href="#" aria-label="Twitter"><svg class="ico"><use href="#i-tw"/></svg></a>
+        <a href="#" aria-label="Pinterest"><svg class="ico"><use href="#i-pin"/></svg></a>
+      </div>
     </div>
     <div><h4>QUICK LINKS</h4><a href="#home">Home</a><a href="#kategori">Shop</a><a href="#tentang">Tentang</a><a href="#promo">Promo</a><a href="#kontak">Kontak</a></div>
-    <div><h4>LAYANAN</h4><a href="#">FAQ</a><a href="#">Pengiriman</a><a href="#">Retur & Refund</a><a href="#">Lacak Pesanan</a><a href="#">Panduan Ukuran</a></div>
+    <div><h4>LAYANAN</h4><a href="#">FAQ</a><a href="#">Pengiriman</a><a href="#">Retur &amp; Refund</a><a href="#">Lacak Pesanan</a><a href="#">Panduan Ukuran</a></div>
     <div><h4>AKUN SAYA</h4><a href="#">Akun Saya</a><a href="#">Riwayat Pesanan</a><a href="#">Wishlist</a><a href="#">Newsletter</a></div>
     <div>
       <h4>NEWSLETTER</h4>
@@ -144,16 +389,425 @@
 <!-- CART DRAWER -->
 <div class="overlay" id="overlay"></div>
 <aside class="cart" id="cart">
-  <div class="cart-head"><h3>Keranjang Belanja</h3><button id="closeCart">✕</button></div>
+  <div class="cart-head">
+    <h3>Keranjang Belanja</h3>
+    <button id="closeCart" aria-label="Tutup"><svg class="ico"><use href="#i-close"/></svg></button>
+  </div>
   <div class="cart-body" id="cartBody"></div>
   <div class="cart-foot">
     <div class="total"><span>Total</span><strong id="cartTotal">Rp 0</strong></div>
-    <button class="btn btn-orange full" id="checkoutBtn">CHECKOUT</button>
+    <button class="btn btn-wa full" id="checkoutBtn"><svg class="ico"><use href="#i-whatsapp"/></svg> CHECKOUT VIA WHATSAPP</button>
   </div>
 </aside>
 
 <div class="toast" id="toast"></div>
 
-<script src="script.js"></script>
+<script>
+/* ================= BELLAVIE - Vanilla JavaScript ================= */
+
+/* Ganti nomor WhatsApp toko di sini (format internasional, tanpa "+") */
+const WHATSAPP_NUMBER = "6281234567890";
+
+const IMG = (id, w = 600) => `https://images.unsplash.com/${id}?w=${w}&q=80&auto=format&fit=crop`;
+const ALL_SIZES = ["S", "M", "L", "XL", "XXL"];
+
+const categories = [
+  { label: "OUTERWEAR", title: "KOLEKSI", sub: "BARU", img: IMG("photo-1591047139829-d91aecb6caea") },
+  { label: "TAS", title: "DISKON 10%", sub: "Untuk model pilihan", img: IMG("photo-1584917865442-de89df76afd3"), big: true },
+  { label: "ATASAN", title: "HOT", sub: "DEALS", img: IMG("photo-1485231183945-fffde7cc051e") },
+  { label: "DRESS", title: "HOT", sub: "COLLECTION", img: IMG("photo-1595777457583-95e059d581b8") },
+  { label: "ANAK", title: "HOT", sub: "STYLE", img: IMG("photo-1518831959646-742c3a14ebf7") },
+];
+
+/* Setiap produk punya 3 gambar + daftar size (sizes: [] = tidak butuh size) */
+const products = [
+  { id: 1, name: "Pink Ruffle Dress", price: 319000, old: null, tag: "Baru", sizes: ["S","M","L","XL"],
+    imgs: [IMG("photo-1515372039744-b8f02a3ae446"), IMG("photo-1495385794356-15371f348c31"), IMG("photo-1502716119720-b23a93e5fe1b")] },
+  { id: 2, name: "Floral Print Top", price: 249000, old: 279000, tag: "Diskon", sizes: ["S","M","L"],
+    imgs: [IMG("photo-1483985988355-763728e1935b"), IMG("photo-1496747611176-843222e1e57c"), IMG("photo-1485462537746-965f33f7f6a7")] },
+  { id: 3, name: "White Casual Dress", price: 349000, old: null, tag: "Baru", sizes: ["S","M","L","XL","XXL"],
+    imgs: [IMG("photo-1502716119720-b23a93e5fe1b"), IMG("photo-1487412720507-e7ab37603c6f"), IMG("photo-1515372039744-b8f02a3ae446")] },
+  { id: 4, name: "Mustard Top", price: 189000, old: null, tag: "Terlaris", sizes: ["S","M","L","XL"],
+    imgs: [IMG("photo-1496747611176-843222e1e57c"), IMG("photo-1485462537746-965f33f7f6a7"), IMG("photo-1483985988355-763728e1935b")] },
+  { id: 5, name: "Black Sport Bra", price: 319000, old: null, tag: "Terlaris", sizes: ["S","M","L"],
+    imgs: [IMG("photo-1571019613454-1cb2f99b2d8b"), IMG("photo-1556821840-3a63f95609a7"), IMG("photo-1518310383802-640c2de311b2")] },
+  { id: 6, name: "Ruffle Dress", price: 299000, old: null, tag: "Baru", sizes: ["S","M","L","XL"],
+    imgs: [IMG("photo-1487412720507-e7ab37603c6f"), IMG("photo-1515372039744-b8f02a3ae446"), IMG("photo-1595777457583-95e059d581b8")] },
+  { id: 7, name: "Grey Sweatshirt", price: 279000, old: 310000, tag: "Diskon", sizes: ["M","L","XL","XXL"],
+    imgs: [IMG("photo-1556821840-3a63f95609a7"), IMG("photo-1521572163474-6864f9cf17ab"), IMG("photo-1620799140408-edc6dcb6d633")] },
+  { id: 8, name: "White Top", price: 179000, old: null, tag: "Baru", sizes: ["S","M","L"],
+    imgs: [IMG("photo-1485462537746-965f33f7f6a7"), IMG("photo-1521572163474-6864f9cf17ab"), IMG("photo-1496747611176-843222e1e57c")] },
+  { id: 9, name: "Denim Jacket", price: 459000, old: null, tag: "Terlaris", sizes: ["M","L","XL","XXL"],
+    imgs: [IMG("photo-1543087903-1ac2ec7aa8c5"), IMG("photo-1591047139829-d91aecb6caea"), IMG("photo-1516257984-b1b4d707412e")] },
+  { id: 10, name: "Kemeja Linen Pria", price: 259000, old: 299000, tag: "Diskon", sizes: ["M","L","XL","XXL"],
+    imgs: [IMG("photo-1602810318383-e386cc2a3ccf"), IMG("photo-1596755094514-f87e34085b2c"), IMG("photo-1594938298603-c8148c4dae35")] },
+  { id: 11, name: "Summer Hat Set", price: 149000, old: null, tag: "Baru", sizes: [],
+    imgs: [IMG("photo-1521369909029-2afed882baee"), IMG("photo-1533055640609-24b498dfd74c"), IMG("photo-1487222477894-8943e31ef7b2")] },
+  { id: 12, name: "Leather Handbag", price: 599000, old: 750000, tag: "Diskon", sizes: [],
+    imgs: [IMG("photo-1548036328-c9fa89d128fa"), IMG("photo-1584917865442-de89df76afd3"), IMG("photo-1594223274512-ad4803739b7c")] },
+];
+
+const rupiah = (n) => "Rp " + n.toLocaleString("id-ID");
+const byId = (id) => products.find((p) => p.id === id);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+/* ---------- toast ---------- */
+const toastEl = document.getElementById("toast");
+let toastTimer;
+function toast(msg) {
+  toastEl.textContent = msg;
+  toastEl.classList.add("on");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toastEl.classList.remove("on"), 2200);
+}
+
+/* ---------- render kategori ---------- */
+document.getElementById("catGrid").innerHTML = categories
+  .map(
+    (c) => `
+  <div class="cat ${c.big ? "big" : ""}">
+    <div class="cat-info">
+      <small>${c.label}</small>
+      <h3>${c.title}</h3>
+      <p>${c.sub}</p>
+      <a href="#produk" class="btn btn-dark">BELANJA</a>
+    </div>
+    <img src="${c.img}" alt="${c.label}" loading="lazy" />
+  </div>`
+  )
+  .join("");
+
+/* ---------- state ---------- */
+let wishlist = JSON.parse(localStorage.getItem("bellavie_wish") || "[]");
+let cart = JSON.parse(localStorage.getItem("bellavie_cart") || "[]");
+const selectedSize = {};      // { productId: "M" }
+const slidePos = {};          // { productId: index }
+const grid = document.getElementById("productGrid");
+let activeTab = "Semua";
+let keyword = "";
+
+function visibleProducts() {
+  return products.filter((p) => {
+    const okTab = activeTab === "Semua" || p.tag === activeTab;
+    const okKey = p.name.toLowerCase().includes(keyword.toLowerCase());
+    return okTab && okKey;
+  });
+}
+
+/* ---------- render produk ---------- */
+function renderProducts() {
+  const list = visibleProducts();
+  if (!list.length) {
+    grid.innerHTML = `<p class="empty">Produk tidak ditemukan.</p>`;
+    return;
+  }
+  grid.innerHTML = list
+    .map((p) => {
+      const i = slidePos[p.id] || 0;
+      return `
+    <div class="card" data-card="${p.id}">
+      <div class="card-img" data-slider="${p.id}">
+        <div class="slider" style="transform:translateX(-${i * 100}%)">
+          ${p.imgs.map((src, n) => `<img src="${src}" alt="${esc(p.name)} foto ${n + 1}" loading="lazy" draggable="false" />`).join("")}
+        </div>
+        ${p.tag !== "Terlaris" ? `<span class="tag ${p.tag === "Diskon" ? "sale" : ""}">${p.tag === "Diskon" ? "-10%" : "NEW"}</span>` : ""}
+        <button class="wish ${wishlist.includes(p.id) ? "on" : ""}" data-wish="${p.id}" aria-label="Wishlist"><svg class="ico"><use href="#i-heart"/></svg></button>
+        <button class="slide-btn prev" data-slide="prev" data-id="${p.id}" aria-label="Foto sebelumnya"><svg class="ico" style="width:14px;height:14px"><use href="#i-left"/></svg></button>
+        <button class="slide-btn next" data-slide="next" data-id="${p.id}" aria-label="Foto berikutnya"><svg class="ico" style="width:14px;height:14px"><use href="#i-right"/></svg></button>
+        <div class="dots">${p.imgs.map((_, n) => `<button class="dot ${n === i ? "on" : ""}" data-dot="${n}" data-id="${p.id}" aria-label="Foto ${n + 1}"></button>`).join("")}</div>
+        <span class="counter" data-counter="${p.id}">${i + 1}/${p.imgs.length}</span>
+      </div>
+      <div class="card-body">
+        <h4>${esc(p.name)}</h4>
+        <div class="price">${rupiah(p.price)} ${p.old ? `<del>${rupiah(p.old)}</del>` : ""}</div>
+        ${
+          p.sizes.length
+            ? `<div class="sizes">${p.sizes
+                .map((s) => `<button class="size ${selectedSize[p.id] === s ? "on" : ""}" data-size="${s}" data-id="${p.id}">${s}</button>`)
+                .join("")}</div>
+               <div class="size-note" data-note="${p.id}">${selectedSize[p.id] ? "Size: " + selectedSize[p.id] : "Pilih ukuran"}</div>`
+            : `<div class="size-note">One size</div>`
+        }
+        <div class="card-actions">
+          <button class="btn btn-orange" data-add="${p.id}"><svg class="ico" style="width:14px;height:14px"><use href="#i-plus"/></svg> KERANJANG</button>
+          <button class="btn btn-wa" data-buy="${p.id}"><svg class="ico" style="width:14px;height:14px"><use href="#i-whatsapp"/></svg> PESAN</button>
+        </div>
+      </div>
+    </div>`;
+    })
+    .join("");
+}
+
+/* ---------- slider ---------- */
+function goSlide(id, index) {
+  const p = byId(id);
+  const max = p.imgs.length;
+  const i = ((index % max) + max) % max;
+  slidePos[id] = i;
+  const wrap = grid.querySelector(`[data-slider="${id}"]`);
+  if (!wrap) return;
+  wrap.querySelector(".slider").style.transform = `translateX(-${i * 100}%)`;
+  wrap.querySelectorAll(".dot").forEach((d, n) => d.classList.toggle("on", n === i));
+  wrap.querySelector(`[data-counter="${id}"]`).textContent = `${i + 1}/${max}`;
+}
+
+/* swipe / drag */
+let touchX = null, touchY = null, touchId = null, locked = false;
+grid.addEventListener("touchstart", (e) => {
+  const wrap = e.target.closest("[data-slider]");
+  if (!wrap) return;
+  touchId = Number(wrap.dataset.slider);
+  touchX = e.touches[0].clientX;
+  touchY = e.touches[0].clientY;
+  locked = false;
+}, { passive: true });
+grid.addEventListener("touchmove", (e) => {
+  if (touchX === null) return;
+  const dx = e.touches[0].clientX - touchX;
+  const dy = e.touches[0].clientY - touchY;
+  if (!locked && Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) locked = true;
+}, { passive: true });
+grid.addEventListener("touchend", (e) => {
+  if (touchX === null) return;
+  const dx = e.changedTouches[0].clientX - touchX;
+  if (locked && Math.abs(dx) > 40) goSlide(touchId, (slidePos[touchId] || 0) + (dx < 0 ? 1 : -1));
+  touchX = touchY = touchId = null;
+});
+/* drag mouse (desktop) */
+let mouseX = null, mouseId = null;
+grid.addEventListener("mousedown", (e) => {
+  const wrap = e.target.closest("[data-slider]");
+  if (!wrap || e.target.closest("button")) return;
+  mouseId = Number(wrap.dataset.slider);
+  mouseX = e.clientX;
+});
+window.addEventListener("mouseup", (e) => {
+  if (mouseX === null) return;
+  const dx = e.clientX - mouseX;
+  if (Math.abs(dx) > 50) goSlide(mouseId, (slidePos[mouseId] || 0) + (dx < 0 ? 1 : -1));
+  mouseX = mouseId = null;
+});
+
+/* ---------- klik di grid produk ---------- */
+grid.addEventListener("click", (e) => {
+  const slideBtn = e.target.closest("[data-slide]");
+  if (slideBtn) {
+    const id = Number(slideBtn.dataset.id);
+    goSlide(id, (slidePos[id] || 0) + (slideBtn.dataset.slide === "next" ? 1 : -1));
+    return;
+  }
+  const dot = e.target.closest("[data-dot]");
+  if (dot) { goSlide(Number(dot.dataset.id), Number(dot.dataset.dot)); return; }
+
+  const sizeBtn = e.target.closest("[data-size]");
+  if (sizeBtn) {
+    const id = Number(sizeBtn.dataset.id);
+    selectedSize[id] = sizeBtn.dataset.size;
+    grid.querySelectorAll(`[data-size][data-id="${id}"]`).forEach((b) => b.classList.toggle("on", b === sizeBtn));
+    const note = grid.querySelector(`[data-note="${id}"]`);
+    if (note) { note.textContent = "Size: " + sizeBtn.dataset.size; note.classList.remove("warn"); }
+    return;
+  }
+
+  const wishBtn = e.target.closest("[data-wish]");
+  if (wishBtn) {
+    const id = Number(wishBtn.dataset.wish);
+    if (wishlist.includes(id)) { wishlist = wishlist.filter((x) => x !== id); toast("Dihapus dari wishlist"); }
+    else { wishlist.push(id); toast("Ditambahkan ke wishlist"); }
+    wishBtn.classList.toggle("on");
+    saveWish();
+    return;
+  }
+
+  const addBtn = e.target.closest("[data-add]");
+  if (addBtn) { addToCart(Number(addBtn.dataset.add)); return; }
+
+  const buyBtn = e.target.closest("[data-buy]");
+  if (buyBtn) {
+    const id = Number(buyBtn.dataset.buy);
+    if (!requireSize(id)) return;
+    const p = byId(id);
+    checkoutWhatsApp([{ id, size: selectedSize[id] || "-", qty: 1, price: p.price, name: p.name }]);
+  }
+});
+
+function requireSize(id) {
+  const p = byId(id);
+  if (p.sizes.length && !selectedSize[id]) {
+    const note = grid.querySelector(`[data-note="${id}"]`);
+    if (note) { note.textContent = "Pilih ukuran dulu!"; note.classList.add("warn"); }
+    toast("Silakan pilih ukuran terlebih dahulu");
+    return false;
+  }
+  return true;
+}
+
+/* ---------- tabs & search ---------- */
+document.getElementById("tabs").addEventListener("click", (e) => {
+  const btn = e.target.closest(".tab");
+  if (!btn) return;
+  document.querySelectorAll(".tab").forEach((t) => t.classList.remove("active"));
+  btn.classList.add("active");
+  activeTab = btn.dataset.tab;
+  renderProducts();
+});
+
+const searchbar = document.getElementById("searchbar");
+document.getElementById("searchBtn").addEventListener("click", () => {
+  searchbar.classList.toggle("open");
+  if (searchbar.classList.contains("open")) document.getElementById("searchInput").focus();
+});
+document.getElementById("searchInput").addEventListener("input", (e) => {
+  keyword = e.target.value;
+  renderProducts();
+});
+document.getElementById("burger").addEventListener("click", () => {
+  document.getElementById("nav").classList.toggle("open");
+});
+document.querySelectorAll("#nav a").forEach((a) =>
+  a.addEventListener("click", () => {
+    document.getElementById("nav").classList.remove("open");
+    document.querySelectorAll("#nav a").forEach((x) => x.classList.remove("active"));
+    a.classList.add("active");
+  })
+);
+
+/* ---------- wishlist ---------- */
+function saveWish() {
+  localStorage.setItem("bellavie_wish", JSON.stringify(wishlist));
+  document.getElementById("wishCount").textContent = wishlist.length;
+}
+
+/* ---------- cart ---------- */
+const cartBody = document.getElementById("cartBody");
+
+function saveCart() {
+  localStorage.setItem("bellavie_cart", JSON.stringify(cart));
+  renderCart();
+}
+
+function addToCart(id) {
+  if (!requireSize(id)) return;
+  const size = selectedSize[id] || "-";
+  const found = cart.find((i) => i.id === id && i.size === size);
+  if (found) found.qty++;
+  else cart.push({ id, size, qty: 1 });
+  saveCart();
+  toast(byId(id).name + (size !== "-" ? " (" + size + ")" : "") + " ditambahkan ke keranjang");
+}
+
+function cartTotal() {
+  return cart.reduce((s, i) => s + byId(i.id).price * i.qty, 0);
+}
+
+function renderCart() {
+  const count = cart.reduce((s, i) => s + i.qty, 0);
+  document.getElementById("cartCount").textContent = count;
+  if (!cart.length) {
+    cartBody.innerHTML = `<div class="empty"><svg class="ico"><use href="#i-bag"/></svg>Keranjang masih kosong</div>`;
+  } else {
+    cartBody.innerHTML = cart
+      .map((i, idx) => {
+        const p = byId(i.id);
+        return `<div class="cart-item">
+          <img src="${p.imgs[0]}" alt="${esc(p.name)}" />
+          <div class="info">
+            <h5>${esc(p.name)}</h5>
+            <div class="p">${rupiah(p.price)}</div>
+            <div class="row">
+              ${
+                p.sizes.length
+                  ? `<select class="mini-size" data-csize="${idx}">${p.sizes
+                      .map((s) => `<option value="${s}" ${s === i.size ? "selected" : ""}>Size ${s}</option>`)
+                      .join("")}</select>`
+                  : `<span class="sub">One size</span>`
+              }
+              <div class="qty">
+                <button data-dec="${idx}" aria-label="Kurangi"><svg class="ico"><use href="#i-minus"/></svg></button>
+                <span>${i.qty}</span>
+                <button data-inc="${idx}" aria-label="Tambah"><svg class="ico"><use href="#i-plus"/></svg></button>
+              </div>
+              <button class="rm" data-rm="${idx}" aria-label="Hapus"><svg class="ico"><use href="#i-trash"/></svg></button>
+            </div>
+            <div class="sub">Subtotal: ${rupiah(p.price * i.qty)}</div>
+          </div>
+        </div>`;
+      })
+      .join("");
+  }
+  document.getElementById("cartTotal").textContent = rupiah(cartTotal());
+}
+
+cartBody.addEventListener("click", (e) => {
+  const inc = e.target.closest("[data-inc]");
+  const dec = e.target.closest("[data-dec]");
+  const rm = e.target.closest("[data-rm]");
+  if (inc) { cart[+inc.dataset.inc].qty++; saveCart(); }
+  else if (dec) {
+    const i = +dec.dataset.dec;
+    cart[i].qty--;
+    if (cart[i].qty <= 0) cart.splice(i, 1);
+    saveCart();
+  } else if (rm) { cart.splice(+rm.dataset.rm, 1); saveCart(); toast("Produk dihapus dari keranjang"); }
+});
+
+cartBody.addEventListener("change", (e) => {
+  const sel = e.target.closest("[data-csize]");
+  if (!sel) return;
+  const idx = +sel.dataset.csize;
+  const newSize = sel.value;
+  const dup = cart.find((it, n) => n !== idx && it.id === cart[idx].id && it.size === newSize);
+  if (dup) { dup.qty += cart[idx].qty; cart.splice(idx, 1); }
+  else cart[idx].size = newSize;
+  saveCart();
+});
+
+/* ---------- drawer ---------- */
+const cartEl = document.getElementById("cart");
+const overlay = document.getElementById("overlay");
+function openCart() { cartEl.classList.add("on"); overlay.classList.add("on"); }
+function closeCart() { cartEl.classList.remove("on"); overlay.classList.remove("on"); }
+document.getElementById("cartBtn").addEventListener("click", openCart);
+document.getElementById("closeCart").addEventListener("click", closeCart);
+overlay.addEventListener("click", closeCart);
+
+/* ---------- checkout WhatsApp ---------- */
+function checkoutWhatsApp(items) {
+  if (!items.length) { toast("Keranjang masih kosong"); return; }
+  let total = 0;
+  const lines = items.map((it, n) => {
+    const p = byId(it.id);
+    const sub = p.price * it.qty;
+    total += sub;
+    return [
+      `${n + 1}. ${p.name}`,
+      `   Size: ${it.size && it.size !== "-" ? it.size : "One size"}`,
+      `   Jumlah: ${it.qty}`,
+      `   Harga: ${rupiah(p.price)}`,
+      `   Subtotal: ${rupiah(sub)}`,
+    ].join("\n");
+  });
+  const message =
+    "Halo, saya ingin melakukan pemesanan:\n\n" +
+    lines.join("\n\n") +
+    `\n\nTotal: ${rupiah(total)}\n\nMohon dibantu untuk proses pesanannya.`;
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  window.open(url, "_blank", "noopener");
+}
+
+document.getElementById("checkoutBtn").addEventListener("click", () => checkoutWhatsApp(cart));
+
+/* ---------- newsletter ---------- */
+document.getElementById("newsForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  toast("Terima kasih! Email " + document.getElementById("newsEmail").value + " terdaftar.");
+  e.target.reset();
+});
+
+/* ---------- init ---------- */
+renderProducts();
+renderCart();
+saveWish();
+</script>
 </body>
 </html>
